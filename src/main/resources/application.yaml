@@ -1,0 +1,34 @@
+test: caca
+spring:
+  h2:
+    console.enabled: true
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  liquibase:
+    change-log: classpath:/db/changelog/production/changelog-master.xml
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: ${client_id}
+            client-secret: ${client_secret}
+            redirectUri: ${redirect_url_client}
+            scope:
+              - public_profile
+              - groups_access_member_info
+
+jwt:
+  secret: javainuse
+
+server:
+  port: 1111
+  ssl:
+    key-store: classpath:springboot.p12
+    key-store-password: password
+    key-store-type: pkcs12
+    key-alias: springboot
+    key-password: password
